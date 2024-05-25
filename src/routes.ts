@@ -1,9 +1,11 @@
-import { Router, Response } from 'express';
+import { Router } from 'express';
+
+import { CreateUserController } from './controllers/user/CreateUserController';
 
 const router = Router();
 
-router.get('/list', (res: Response) => {
-    return res.json({ ok: true })
-});
+
+// Rota para criar um novo usuário
+router.post('/user', new CreateUserController().handle);
 
 export { router };

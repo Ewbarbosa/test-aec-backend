@@ -12,3 +12,33 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String
+  password   String
+  created_at DateTime? @default(now())
+  
+  Address    Address[] // relação 1 - n
+
+  @@map("users")
+}
+
+model Address {
+  id         Int    @id @default(autoincrement())
+  street     String // rua com número
+  complement String // complemento
+  zip_code   String // cep
+  district   String // bairro
+  city       String // cidade
+  state      String // estado
+
+  // relacionamentos
+  // a tabela user pode ter varios endereços
+  // o campo user_id é chave estrangeira
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  @@map("address")
+}
