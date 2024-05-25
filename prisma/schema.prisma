@@ -28,7 +28,7 @@ model User {
 model Address {
   id         Int    @id @default(autoincrement())
   street     String // rua com número
-  complement String // complemento
+  complement String? // complemento - campo opcional
   zip_code   String // cep
   district   String // bairro
   city       String // cidade

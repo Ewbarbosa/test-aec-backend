@@ -60,6 +60,56 @@
           }
         }
       }
+    },
+    "/address": {
+      "post": {
+        "summary": "Cadastro de endereços",
+        "description": "Rota responsável por criar um novo endereço.",
+        "tags": [
+          "Address"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "examples":{
+                "address": {
+                  "value": {
+                    "street": "Rua Ingu, 1111",
+                    "complement": "B1806",
+                    "zip_code": "03630-040",
+                    "district": "Guaiauna",
+                    "city": "São Paulo",
+                    "state": "São Paulo",
+                    "user_id": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "400": {
+            "description": "Bad request"
+          },
+          "500":{
+            "description":"Server internal error"
+          },
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "$ref": "#/components/schemas/Address"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -74,6 +124,32 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "complement": {
+            "type": "string"
+          },
+          "zip_code": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "user_id": {
             "type": "string"
           }
         }
