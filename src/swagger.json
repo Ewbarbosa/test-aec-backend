@@ -63,10 +63,15 @@
     },
     "/address": {
       "post": {
-        "summary": "Cadastro de endereços",
+        "summary": "Cadastro de endereço",
         "description": "Rota responsável por criar um novo endereço.",
         "tags": [
           "Address"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "requestBody": {
           "content": {
@@ -109,6 +114,40 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Atualização de endereço",
+        "description": "Rota responsável por atualizar o endereço",
+        "tags": [
+          "Address"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Address_Update"
+              },
+              "examples": {
+                "address": {
+                  "value": {
+                    "id": 1,
+                    "street":"Rua Ingu, 1111",
+                    "complement": "T2 1806",
+                    "zip_code":"03630-040",
+                    "district": "Penha",
+                    "city": "São Paulo",
+                    "state": "São Paulo"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/login": {
@@ -135,19 +174,19 @@
             }
           }
         },
-        "responses":{
+        "responses": {
           "400": {
             "description": "Bad request"
           },
           "500": {
             "description": "Server internal error"
           },
-          "200":{
+          "200": {
             "description": "Ok",
             "content": {
-              "application/json":{
+              "application/json": {
                 "schema": {
-                  "type":"object",
+                  "type": "object",
                   "$ref": "#components/schemas/User_Login"
                 }
               }
@@ -209,6 +248,39 @@
             "type": "string"
           }
         }
+      },
+      "Address_Update": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "street": {
+            "type": "string"
+          },
+          "complement": {
+            "type": "string"
+          },
+          "zip_code": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

@@ -6,7 +6,9 @@ class CreateAddressController {
 
   async handle(req: Request, res: Response) {
 
-    const { street, complement, zip_code, district, city, state, user_id } = req.body;
+    const { street, complement, zip_code, district, city, state } = req.body;
+
+    const user_id = req.user_id;
 
     const createAddress = new CreateAddressService();
 

@@ -47,7 +47,6 @@ class AuthUserService {
         expiresIn: '1d'
       }
     )
-
     
     return {
       id: user.id,
