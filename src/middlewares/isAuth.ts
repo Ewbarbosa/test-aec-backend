@@ -13,7 +13,7 @@ export function isAuth(req: Request, res: Response, next: NextFunction) {
 
   // se não existir token retorna 401
   if (!authToken) {
-    return res.status(401);
+    return res.status(401).send();
   }
 
   // aqui o token recebido é salvo na variavel "token"

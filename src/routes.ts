@@ -5,13 +5,12 @@ import { CreateAddressController } from './controllers/address/CreateAddressCont
 import { AuthUserController } from './controllers/user/AuthUserController';
 import { UpdateAddressController } from './controllers/address/UpdateAddressController';
 import { DeleteAddressController } from './controllers/address/DeleteAddresController';
-
+import { ListAddressController } from './controllers/address/ListAddressController';
 
 // importação do middleware
 import { isAuth } from './middlewares/isAuth';
 
 const router = Router();
-
 
 // Rota para criar um novo usuário
 router.post('/user', new CreateUserController().handle);
@@ -27,5 +26,8 @@ router.post('/login', new AuthUserController().handle);
 
 // rota para deletar um endereço
 router.delete('/address', isAuth, new DeleteAddressController().handle);
+
+// rota para listar os endereços 
+router.get('/address', isAuth, new ListAddressController().handle);
 
 export { router };
