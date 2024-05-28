@@ -6,6 +6,7 @@ import { AuthUserController } from './controllers/user/AuthUserController';
 import { UpdateAddressController } from './controllers/address/UpdateAddressController';
 import { DeleteAddressController } from './controllers/address/DeleteAddresController';
 import { ListAddressController } from './controllers/address/ListAddressController';
+import { DetailUserController } from './controllers/user/DetailUserController';
 
 // importação do middleware
 import { isAuth } from './middlewares/isAuth';
@@ -29,5 +30,8 @@ router.delete('/address', isAuth, new DeleteAddressController().handle);
 
 // rota para listar os endereços 
 router.get('/address', isAuth, new ListAddressController().handle);
+
+// rota para buscar informações do usuário
+router.get('/me', isAuth, new DetailUserController().handle);
 
 export { router };

@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
 import cors from 'cors';
 
@@ -25,11 +25,11 @@ app.use(router);
 
 // midleware para lançamento de exeções
 // util pra lançar exceções com try catch sem quebrar a aplicação
-app.use((err: Error, req: Request, res: Response) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {
         // se err for uma instancia do tipo erro
         return res.status(400).json({
-            error: err.message
+            erro: err.message
         })
     }
 
