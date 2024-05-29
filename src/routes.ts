@@ -7,6 +7,7 @@ import { UpdateAddressController } from './controllers/address/UpdateAddressCont
 import { DeleteAddressController } from './controllers/address/DeleteAddresController';
 import { ListAddressController } from './controllers/address/ListAddressController';
 import { DetailUserController } from './controllers/user/DetailUserController';
+import { ListAddressByIdController } from './controllers/address/ListAddressByIdController';
 
 // importação do middleware
 import { isAuth } from './middlewares/isAuth';
@@ -33,5 +34,8 @@ router.get('/address', isAuth, new ListAddressController().handle);
 
 // rota para buscar informações do usuário
 router.get('/me', isAuth, new DetailUserController().handle);
+
+// rota para listar endereços por ID
+router.get('/addressId', isAuth, new ListAddressByIdController().handle);
 
 export { router };
